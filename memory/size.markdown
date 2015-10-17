@@ -12,7 +12,7 @@ use some basic tools.
    ``sizeof()`` function.
 
 2. Examine the size of the following class in memory (not the generated object
-   file size) after compiling for both 32bit and 64bit::
+   file size) after compiling for both 32bit and 64bit:
 
        class foo
        {

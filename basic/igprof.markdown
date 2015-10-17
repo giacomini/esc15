@@ -41,7 +41,7 @@ using igprof statistical performance profiler.
 
 2. Run the test program under igprof performance profiler:
 
-        cd esc14/exercises/basic
+        cd esc15/exercises/basic
         igprof -pp -z -o cputicks.gz ./cputicks 100000
 
 3. Generate a simple text profile output of run time:
