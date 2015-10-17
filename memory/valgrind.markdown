@@ -9,14 +9,14 @@ The goal of this exercise is to locate some common memory errors using
 Steps
 -----
 
-1. Make sure your environment is correct::
+1. Make sure your environment is correct:
 
         c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
         valgrind --version          # should say 'valgrind-3.9.0'
 
-2. Go to the exercise directory::
+2. Go to the exercise directory:
 
-        cd esc14/exercises/memory
+        cd esc15/exercises/memory
 
 3. Examine the little test programs in this directory.  You use them for
    dedicated little studies on container memory allocation behaviour:
@@ -31,7 +31,7 @@ Steps
      Catch destruction of stack frame caused by overwriting outside bounds.
 
 4. Build each program.  The command is mentioned in each source file.  To
-   build all in one go::
+   build all in one go:
 
         grep -h Compile *.cc | sed 's|// Compile: ||' | sh -x
 

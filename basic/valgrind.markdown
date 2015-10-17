@@ -17,7 +17,7 @@ later exercises will go into more detail.
 
 2. Build [`memerror.cc`]({{site.exercise_repo}}/exercises/basic/memerror.cc):
 
-       cd esc14/exercises/basic
+       cd esc15/exercises/basic
        c++ -g -o memerror memerror.cc
 
 3. Run the test program under valgrind:

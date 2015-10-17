@@ -14,12 +14,12 @@ evaluations involving small regions of code.
 Build and run [`cputicks.cc`](https://github.com/infn-esc/esc15/exercises/basic/cputicks.cc):
 
 {% highlight bash %}
-cd esc14/exercises/basic
+cd esc15/exercises/basic
 c++ -O -o cputicks cputicks.cc
 ./cputicks
 {% endhighlight %}
 
-Run the program a few times, possibly also with arguments::
+Run the program a few times, possibly also with arguments:
 
 {% highlight bash %}
 ./cputicks 100

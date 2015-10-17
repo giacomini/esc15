@@ -81,7 +81,7 @@ Finishing off
        igprof -h                   # should print simple help message
        which igprof-navigator      # should say full path
 
-3. Create a web area where you will put output from some exercises::
+3. Create a web area where you will put output from some exercises:
 
        mkdir -p ~/public_html/cgi-bin/data
        cp $(which igprof-navigator) ~/public_html/cgi-bin/igprof-navigator.py
@@ -128,7 +128,7 @@ need to remember IP addresses.
    locally, and `rsync <http://rsync.samba.org/>`_ to/from student servers.
    This ensures you keep a copy of everything relevant locally at the end.
 
-   * Generate a temporary SSH key and copy it to the right host::
+   * Generate a temporary SSH key and copy it to the right host:
 
          ssh-keygen -t rsa -C esc15_temp_key -f ~/.ssh/id_rsa_esc15
          scp ~/.ssh/id_rsa_esc15.pub <student>@131.154.193.33:.ssh/authorized_keys

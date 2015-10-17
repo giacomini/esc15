@@ -18,7 +18,7 @@ such as `top`, `ps`, `pmap` and `pstack`, and profiling and debugging tools
 
 2. Go to the exercise directory:
 
-        cd esc14/exercises/memory
+        cd esc15/exercises/memory
 
 3. Make yourself a test dataset of 16 random 30'000-word files:
 
@@ -104,7 +104,7 @@ such as `top`, `ps`, `pmap` and `pstack`, and profiling and debugging tools
        less -X igprof*.res.sortdiff
 
 10. Optimise the program and remove memory leaks from it as you best see
-    fit. Cross-check your results always by running::
+    fit. Cross-check your results always by running:
 
         grep -iv <rx> <file> | uniq | wc -l
 
