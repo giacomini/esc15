@@ -1,0 +1,48 @@
+highlighter: pygments
+baseurl: /esc15
+menu_header: ESC15
+exercise_repo: https://github.com/infn-esc/esc15
+menu:
+  -
+    name: basic
+    label: BASICS
+    items:
+    - name: environment
+      label: Environment
+    - name: compiling
+      label: Compiling
+    - name: cputicks
+      label: CpuTicks
+    - name: valgrind
+      label: Valgrind
+    - name: igprof
+      label: IgProf
+  - 
+    name: memory
+    label: MEMORY
+    items:
+    - name: valgrind
+      label: Valgrind
+    - name: vector
+      label: Vector
+    - name: string
+      label: String
+    - name: process
+      label: Process
+    - name: size
+      label: Size
+    - name: shlib
+      label: Shared Library
+    - name: large-app
+      label: Large Application
+    - name: word-list
+      label: Word List
+
+defaults: 
+  -
+    scope:
+      path: "basic/"
+      type: "posts"
+    values:
+      category: "basic"
+      layout: "main"
