@@ -77,7 +77,7 @@ Finishing off
 2. Check the following are working ok:
 
        c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
-       valgrind --version          # should say 'valgrind-3.9.0'
+       valgrind --version          # should say 'valgrind-3.10.0'
        igprof -h                   # should print simple help message
        which igprof-navigator      # should say full path
 

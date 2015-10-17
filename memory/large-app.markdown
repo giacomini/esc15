@@ -11,7 +11,7 @@ tool to indicate the interesting code sections to examine.
 
 Ideally you should choose some application that you would use in your
 normal work environment. In that case you will also need to 
-build `IgProf <igprof.org>`_ for yourself. Otherwise you can choose
+build [IgProf](https://igprof.org) for yourself. Otherwise you can choose
 some open source (scientific) application that you can build yourself
 and which provides some non-trivial test or example job which you
 can run.
@@ -39,4 +39,4 @@ Steps
 References
 ----------
 
-* `IgProf <http://igprof.org>`_
+* [IgProf](http://igprof.org>)
