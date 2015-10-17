@@ -13,7 +13,7 @@ such as `top`, `ps`, `pmap` and `pstack`, and profiling and debugging tools
 1. Make sure your environment is correct: 
 
         c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
-        valgrind --version          # should say 'valgrind-3.9.0'
+        valgrind --version          # should say 'valgrind-3.10.0'
         igprof -h                   # should print simple help message
 
 2. Go to the exercise directory:

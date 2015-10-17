@@ -13,7 +13,7 @@ later exercises will go into more detail.
 1. Set up your environment:
 
         c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
-        valgrind --version          # should say 'valgrind-3.9.0'
+        valgrind --version          # should say 'valgrind-3.10.0'
 
 2. Build [`memerror.cc`]({{site.exercise_repo}}/exercises/basic/memerror.cc):
 
