@@ -15,20 +15,16 @@ Basic profiling environment
 To make sure you have technically everything set up right, let's first make
 sure you can create a dummy profile for simply running ``ls``.
 
-1. Make sure your environment is correct::
+1. Make sure your environment is correct:
 
-{% highlight bash %}
-     c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
-     igprof -h                   # should print simple help message
-{% endhighlight %}
+        c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
+        igprof -h                   # should print simple help message
 
-2. Create your very first igprof report on ``ls``::
+2. Create your very first igprof report on ``ls``:
 
-{% highlight bash %}
-     igprof -pp -z -o ls-test.gz -- ls -laFR /usr/lib >/dev/null
-     igprof-analyse --sqlite -d -v -g ls-test.gz |
-       sqlite3 ~/public_html/cgi-bin/data/ls-test.sql3
-{% endhighlight %}
+        igprof -pp -z -o ls-test.gz -- ls -laFR /usr/lib >/dev/null
+        igprof-analyse --sqlite -d -v -g ls-test.gz |
+          sqlite3 ~/public_html/cgi-bin/data/ls-test.sql3
 
 3. View the report at http://131.154.193.33/~<student>/cgi-bin/igprof-navigator.py/ls-test/
 
@@ -38,47 +34,39 @@ Basic performance profile
 This exercise will run the program from the :doc:`previous exercise <cputicks>`
 using igprof statistical performance profiler.
 
-1. Make sure your environment is correct::
+1. Make sure your environment is correct:
 
-{% highlight bash %}
-     c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
-     igprof -h                   # should print simple help message
-{% endhighlight %}
+        c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
+        igprof -h                   # should print simple help message
 
-2. Run the test program under igprof performance profiler::
+2. Run the test program under igprof performance profiler:
 
-{% highlight bash %}
-     cd esc14/exercises/basic
-     igprof -pp -z -o cputicks.gz ./cputicks 100000
-{% endhighlight %}
+        cd esc14/exercises/basic
+        igprof -pp -z -o cputicks.gz ./cputicks 100000
 
-3. Generate a simple text profile output of run time::
+3. Generate a simple text profile output of run time:
 
-{% highlight bash %}
-     igprof-analyse -d -v -g cputicks.gz > cputicks.res
-     less -SX cputicks.res
-{% endhighlight %}
+        igprof-analyse -d -v -g cputicks.gz > cputicks.res
+        less -SX cputicks.res
 
-   You should see an output like this::
+   You should see an output like this:
 
-     Counter: PERF_TICKS
+        Counter: PERF_TICKS
 
-     ----------------------------------------------------------------------
-     Flat profile (cumulative >= 1%)
+        ----------------------------------------------------------------------
+        Flat profile (cumulative >= 1%)
 
-     % total      Total  Function
-       100.0       0.28  <spontaneous> [1]
-       100.0       0.28  _start [2]
-       100.0       0.28  __libc_start_main [3]
-       100.0       0.28  main [4]
-        97.8       0.27  test1(int) [5]
-     <... and so on ...>
+        % total      Total  Function
+          100.0       0.28  <spontaneous> [1]
+          100.0       0.28  _start [2]
+          100.0       0.28  __libc_start_main [3]
+          100.0       0.28  main [4]
+           97.8       0.27  test1(int) [5]
+        <... and so on ...>
 
 4. Generate the same profile in web-viewable database, view the profile at
-   http://131.154.193.33/~<student>/cgi-bin/igprof-navigator.py/cputicks/ ::
+   http://131.154.193.33/~<student>/cgi-bin/igprof-navigator.py/cputicks/ :
 
-{% highlight bash %}
-     rm -f ~/public_html/cgi-bin/data/cputicks.sql3
-     igprof-analyse --sqlite -d -v -g cputicks.gz |
-       sqlite3 ~/public_html/cgi-bin/data/cputicks.sql3
-{% endhighlight %}
+        rm -f ~/public_html/cgi-bin/data/cputicks.sql3
+        igprof-analyse --sqlite -d -v -g cputicks.gz |
+          sqlite3 ~/public_html/cgi-bin/data/cputicks.sql3
