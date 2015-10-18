@@ -38,6 +38,12 @@ menu:
     - name: word-list
       label: Word List
 
+  - name: architecture
+    label: ARCHITECTURE
+    items:
+    - name: perf
+      label: perf
+
 defaults: 
   -
     scope:
