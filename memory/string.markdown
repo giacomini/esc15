@@ -4,8 +4,8 @@ layout: main
 ---
 
 The goal of this exercise is to understand the memory use and performance of
-`std::string <http://www.cplusplus.com/reference/string/string/>`_. You will
-get familiar with the `IgProf <http://igprof.org>`_ profiler tool.
+[std::string](http://www.cplusplus.com/reference/string/string/). You will
+get familiar with the [IgProf](http://igprof.org) profiler tool.
 
 Steps
 -----
@@ -47,14 +47,14 @@ Steps
 
 6. Analyse the profiles using:
 
-     for f in *.gz; do
-       igprof-analyse --sqlite -d -v -g -r MEM_TOTAL $f |
-         sqlite3 ~/public_html/cgi-bin/data/${f}_tot.sql3
-       igprof-analyse --sqlite -d -v -g -r MEM_LIVE $f |
-         sqlite3 ~/public_html/cgi-bin/data/${f}_live.sql3
-       igprof-analyse --sqlite -d -v -g -r MEM_LIVE --value peak $f |
-         sqlite3 ~/public_html/cgi-bin/data/${f}_live_peak.sql3
-     done
+        for f in *.gz; do
+          igprof-analyse --sqlite -d -v -g -r MEM_TOTAL $f |
+            sqlite3 ~/public_html/cgi-bin/data/${f}_tot.sql3
+          igprof-analyse --sqlite -d -v -g -r MEM_LIVE $f |
+            sqlite3 ~/public_html/cgi-bin/data/${f}_live.sql3
+          igprof-analyse --sqlite -d -v -g -r MEM_LIVE --value peak $f |
+            sqlite3 ~/public_html/cgi-bin/data/${f}_live_peak.sql3
+        done
 
 7. This results in profiles such as:
 
