@@ -25,9 +25,11 @@ Below we use *`<student>`* as a general student account `esc-server-<nn>` as the
 general host alias.  When executing the commands, replace these with the
 account name or host assigned to you.  
 
-**IMPORTANT NOTE:** *The student computers will be uninstalled on Friday
+<div class="alert alert-danger" role="alert">
+<strong>IMPORTANT NOTE:</strong> The student computers will be uninstalled on Friday
 evening and all data on them will be destroyed. Please make sure you make
-a copy of everything valuable by the end of the Friday session!*
+a copy of everything valuable by the end of the Friday session!
+</div>
 
 
 Simple configuration
