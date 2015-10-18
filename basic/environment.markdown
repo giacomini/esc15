@@ -39,19 +39,17 @@ virtual machines. Use the real server (with a name of the form
 To log on esc-XY you have to first log on a gateway server, named
 esc-gw.pd.infn.it, with the username and password of studentNM
 
-```sh
-$ ssh studentNM@esc-gw.pd.infn.it
-```
+     [myself@mylaptop ~]$ ssh studentNM@esc-gw.pd.infn.it
 
 From there you can log onto esc-XY in a password-less way, thanks to an SSH
 key already generated for you and available in the .ssh directory
 (files id_rsa and id_rsa.pub).
 
-$ ssh esc-XY
+     [studentNM@esc-gw ~]$ ssh esc-XY
 
 You can do it in one step:
 
-$ ssh -t studentNM@esc-gw ssh esc-XY
+     [myself@mylaptop ~]$ $ ssh -t studentNM@esc-gw ssh esc-XY
 
 If you wish, you can copy the SSH credential files onto your personal
 laptop, so that you can log on esc-gw without password.
@@ -82,20 +80,18 @@ Testing the environment
 
 2. Check the following commands and the respective outputs:
 
-```sh
-[studentNM@esc-XY ~]$ c++ -dumpversion
-5.2.0
-[studentNM@esc-XY ~]$ valgrind --version
-valgrind-3.10.0
-[studentNM@esc-XY ~]$ igprof -h
-igprof [options] program [options]
-
-Options to igprof:
--h, --help                  	this help message
-...
-[studentNM@esc-XY ~]$ which igprof-navigator
-/usr/bin/igprof-navigator
-```
+        [studentNM@esc-XY ~]$ c++ -dumpversion
+        5.2.0
+        [studentNM@esc-XY ~]$ valgrind --version
+        valgrind-3.10.0
+        [studentNM@esc-XY ~]$ igprof -h
+        igprof [options] program [options]
+        
+        Options to igprof:
+        -h, --help                  	this help message
+        ...
+        [studentNM@esc-XY ~]$ which igprof-navigator
+        /usr/bin/igprof-navigator
 
 3. Create a web area where you will put output from some exercises:
 
