@@ -39,17 +39,17 @@ virtual machines. Use the real server (with a name of the form
 To log on esc-XY you have to first log on a gateway server, named
 esc-gw.pd.infn.it, with the username and password of studentNM
 
-     [myself@mylaptop ~]$ ssh studentNM@esc-gw.pd.infn.it
+	[myself@mylaptop ~]$ ssh studentNM@esc-gw.pd.infn.it
 
 From there you can log onto esc-XY in a password-less way, thanks to an SSH
 key already generated for you and available in the .ssh directory
 (files id_rsa and id_rsa.pub).
 
-     [studentNM@esc-gw ~]$ ssh esc-XY
+	[studentNM@esc-gw ~]$ ssh esc-XY
 
 You can do it in one step:
 
-     [myself@mylaptop ~]$ $ ssh -t studentNM@esc-gw ssh esc-XY
+	[myself@mylaptop ~]$ $ ssh -t studentNM@esc-gw ssh esc-XY
 
 If you wish, you can copy the SSH credential files onto your personal
 laptop, so that you can log on esc-gw without password.
@@ -71,7 +71,7 @@ School material
 
 The school material is all included in a git repository. Get it using:
 
-        git clone https://github.com/infn-esc/esc15.git
+	git clone https://github.com/infn-esc/esc15.git
 
 Testing the environment
 -----------------------
@@ -80,26 +80,26 @@ Testing the environment
 
 2. Check the following commands and the respective outputs:
 
-        [studentNM@esc-XY ~]$ c++ -dumpversion
-        5.2.0
-        [studentNM@esc-XY ~]$ valgrind --version
-        valgrind-3.10.0
-        [studentNM@esc-XY ~]$ igprof -h
-        igprof [options] program [options]
-        
-        Options to igprof:
-        -h, --help                  	this help message
-        ...
-        [studentNM@esc-XY ~]$ which igprof-navigator
-        /usr/bin/igprof-navigator
+		[studentNM@esc-XY ~]$ c++ -dumpversion
+		5.2.0
+		[studentNM@esc-XY ~]$ valgrind --version
+		valgrind-3.10.0
+		[studentNM@esc-XY ~]$ igprof -h
+		igprof [options] program [options]
+		
+		Options to igprof:
+		-h, --help                  	this help message
+		...
+		[studentNM@esc-XY ~]$ which igprof-navigator
+		/usr/bin/igprof-navigator
 
 3. Create a web area where you will put output from some exercises:
 
-       mkdir -p ~/public_html/cgi-bin/data
-       cp $(which igprof-navigator) ~/public_html/cgi-bin/igprof-navigator.py
-       echo "<html><body><a href='cgi-bin/igprof-navigator.py'>My" \
-         "igprof reports</a></body></html>" > ~/public_html/index.html
-       chmod 755 ~/public_html/cgi-bin
+		mkdir -p ~/public_html/cgi-bin/data
+		cp $(which igprof-navigator) ~/public_html/cgi-bin/igprof-navigator.py
+		echo "<html><body><a href='cgi-bin/igprof-navigator.py'>My" \
+		"igprof reports</a></body></html>" > ~/public_html/index.html
+		chmod 755 ~/public_html/cgi-bin
 
 4. View `http://131.154.193.33/~<student>/` in your web browser, you
    should see the basic page you created above. Click on the link to
