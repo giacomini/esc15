@@ -3,77 +3,51 @@ title: School exercise environment
 layout: main
 ---
 
-The goal of this step is to get confident with the ESC working
-environment and checking that everything is correctly set up for the
+The goal of this step is for you to get confident with the ESC working
+environment and check that everything is correctly set up for the
 school exercises.
 
 If something doesn't work as expected, please ask one of the
 organizers.
 
-Wi-Fi access
-------------
+## Wi-Fi access
 
 Make sure you are using the INFN-Captive WiFi or eduroam networks and
 not the CEUB WiFi network. Only the INFN-Captive or eduroam networks
-will work for the following.
+will allow to connect to the ESC computers.
 
-SSH access to school computers
-------------------------------
+## SSH access to school computers
 
-You have been assigned a personal account, with a username of the
-form studentNM, where nm is a number between 01 and 30. In the
-following, when you see studentNM, replace it with your personal
-account. You should also have received the corresponding
-password.
+You have been assigned a personal account, with a username of the form
+studentNM, where NM is a number between 01 and 30. In the following,
+when you see studentNM, replace it with your personal account. You
+should also have received the corresponding password.
 
-Similarly you have been assigned a personal host, named esc-XY, where
-xy is a number between 01 and 60. In the following, when you see
-esc-XY, replace it with the name of the host assigned to you.
+Similarly you have been assigned a computer, named esc-XY, where XY is
+a number between 01 and 60. In the following, when you see esc-XY,
+replace it with the name of the host assigned to you.
 
-You were also assigned two virtual machines (with names of the form
-`esc-vm-xyz`). However, for the exercises in this section you do not (and 
-should not) use the 
-virtual machines. Use the real server (with a name of the form
-`esc-XY`).
-
-To log on esc-XY you have to first log on a gateway server, named
-esc-gw.pd.infn.it, with the username and password of studentNM
+To log on esc-XY you have to first log into a gateway server, named
+esc-gw.pd.infn.it, with the username and password of studentNM.
 
 	[myself@mylaptop ~]$ ssh -X studentNM@esc-gw.pd.infn.it
 
-The -X option forwards the X11 display.
+The `-X` option forwards the X11 display.
 
-From there you can log onto esc-XY in a password-less way, thanks to an SSH
-key already generated for you and available in the .ssh directory
-(files id_rsa and id_rsa.pub).
+From there you can log into esc-XY in a password-less way, thanks to
+an SSH key already generated for you and available in the `.ssh`
+directory (files `id_rsa` and `id_rsa.pub`).
 
-	[studentNM@esc-gw ~]$ ssh esc-XY
+	[studentNM@esc-gw ~]$ ssh -X esc-XY
 
-You can do it in one step:
+If you want you can do it in one step.
 
-	[myself@mylaptop ~]$ $ ssh -t studentNM@esc-gw ssh esc-XY
+	[myself@mylaptop ~]$ $ ssh -tX studentNM@esc-gw.pd.infn.it ssh -X esc-XY
 
-If you wish, you can copy the SSH credential files onto your personal
-laptop, so that you can log on esc-gw without password. If you run
-Linux on your laptop, a convenient setup may be the following:
-
-	[myself@mylaptop ~]$ mkdir esc_ssh
-	[myself@mylaptop ~]$ scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa esc_ssh
-	[myself@mylaptop ~]$ scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa.pub esc_ssh
-	[myself@mylaptop ~]$ chmod 600 esc_ssh/id_rsa
-	[myself@mylaptop ~]$ cat >> .ssh/config <<EOF
-	Host esc-gw
-	HostName esc-gw.pd.infn.it
-	User studentNM
-	IdentityFile ~/esc_ssh/id_rsa
-	EOF
-	[myself@mylaptop ~]$ mkdir esc_mnt
-	[myself@mylaptop ~]$ sshfs esc-gw: esc_mnt
-
-Your shell is [`bash`](http://www.gnu.org/s/bash)
+Your shell is [`bash`](http://www.gnu.org/s/bash).
 
 Your home directory is shared between esc-gw and esc-XY, but
-please don't use esc-gw but for logging into esc-XY.
+please don't use esc-gw but to log into esc-XY.
 
 <div class="alert alert-danger" role="alert">
 <strong>IMPORTANT NOTE:</strong> The student computers will be uninstalled on Friday
@@ -81,20 +55,17 @@ evening and all data on them will be destroyed. Please make sure you make
 a copy of everything valuable by the end of the Friday session!
 </div>
 
+## School material
 
-School material
----------------
-
-The school material is all included in a git repository. Get it using:
+All the school material is included in a git repository. Get it using:
 
 	git clone https://github.com/infn-esc/esc15.git
 
-Testing the environment
------------------------
+## Testing the environment
 
-1. Log onto your student host
+1. Log into esc-XY.
 
-2. Check the following commands and the respective outputs:
+2. Check the following commands and the respective outputs.
 
 		[studentNM@esc-XY ~]$ c++ -dumpversion
 		5.2.0
@@ -111,82 +82,86 @@ Testing the environment
 
 3. Create a web area where you will put output from some exercises:
 
-		mkdir -p ~/public_html/cgi-bin/data
-		cp $(which igprof-navigator) ~/public_html/cgi-bin/igprof-navigator.py
-		echo "<html><body><a href='cgi-bin/igprof-navigator.py'>My" \
-		"igprof reports</a></body></html>" > ~/public_html/index.html
-		chmod 755 ~/public_html/cgi-bin
+		[studentNM@esc-XY ~]$ mkdir -p ~/public_html/cgi-bin/data
+		[studentNM@esc-XY ~]$ cp $(which igprof-navigator) ~/public_html/cgi-bin/igprof-navigator.py
+		[studentNM@esc-XY ~]$ echo "<html><body><a href='cgi-bin/igprof-navigator.py'>My" \
+		> "igprof reports</a></body></html>" > ~/public_html/index.html
+		[studentNM@esc-XY ~]$ chmod 755 ~/public_html/cgi-bin
 
-4. View `http://131.154.193.33/~<student>/` in your web browser, you
+4. View `http://131.154.193.33/~studentNM/` in your web browser; you
    should see the basic page you created above. Click on the link to
    profiles, it should produce some output -- for now it will in fact
    display an error message due to lack of profiles.
 
-Editing source code
--------------------
+## Editing source code
+
+### Editing locally
 
 On esc-XY you can find several editors available, such as vim, emacs,
-gedit, nano. If your laptop's diplay is available, graphical editors
+gedit, nano. If the X display is available, graphical editors
 will open a window on your laptop; the network latency however may not
 be good enough to give you a fine experience.
 
+### Editing remotely
+
 Alternatively you could edit the source code for the exercises on your
-laptop, synchronizing the files with esc-XY. In the following some
-options are presented.
+laptop, synchronizing the files with esc-XY. Some options are
+presented below.
 
-Using sshfs
-===========
+First of all you should simplify your use of SSH to connect to ESC
+resources.
 
-You can mount your home directory on the ESC system on your laptop via
-sshfs.
+If you run Linux, you could for example copy the SSH credentials
+available on esc-gw onto your laptop and configure SSH to use them
+when logging into esc-gw.
 
-	[myself@mylaptop ~]$ mkdir esc
-	[myself@mylaptop ~]$ sshfs 
-2. If your laptop is Linux, Mac OS X, or if you use Cygwin on Windows, we
-   recommend you keep a copy of all your exercise source code, notes etc.
-   locally, and `rsync <http://rsync.samba.org/>`_ to/from student servers.
-   This ensures you keep a copy of everything relevant locally at the end.
+	[me@mylaptop ~]$ mkdir esc_ssh
+	[me@mylaptop ~]$ scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa esc_ssh
+	[me@mylaptop ~]$ scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa.pub esc_ssh
+	[me@mylaptop ~]$ chmod 600 esc_ssh/id_rsa
+	[me@mylaptop ~]$ cat >> .ssh/config <<EOF
+	Host esc-gw
+	HostName esc-gw.pd.infn.it
+	User studentNM
+	IdentityFile ~/esc_ssh/id_rsa
+	EOF
+	[me@mylaptop ~]$ ssh esc-gw
+	Last login: ...
+	[studentNM@esc-gw ~]$ 
 
-   * Generate a temporary SSH key and copy it to the right host:
+### Using scp
 
-         ssh-keygen -t rsa -C esc15_temp_key -f ~/.ssh/id_rsa_esc15
-         scp ~/.ssh/id_rsa_esc15.pub <student>@131.154.193.33:.ssh/authorized_keys
+You can copy files remotely using scp, in both directions.
 
-   * If not on OS X, start an `ssh-agent`:
+	[me@mylaptop ~]$ scp exercise.cc @esc-gw:
+	[me@mylaptop ~]$ scp @esc-gw:exercise2.cc .
 
-         [ $(uname) != Darwin ] && { killall ssh-agent; eval `ssh-agent`; }
+### Using sshfs
 
-   * Add the just-generated key to your `ssh-agent`:
+You can mount your ESC home directory on your laptop via sshfs.
 
-         ssh-add ~/.ssh/id_rsa_esc15
+	[me@mylaptop ~]$ mkdir esc_workspace
+	[me@mylaptop ~]$ sshfs esc-gw: esc_workspace
 
-   * Test you can rsync to the student host (change "esc-40" below to your
-     assigned node!):
+### Using rsync
 
-		mkdir /tmp/foo
-		date > /tmp/foo/test.txt
-		rsync -av /tmp/foo/ 131.154.193.33:foo/
-		ssh <student>@131.154.193.33 ls -laFR foo
-		ssh <student>@131.154.193.33 rm -fr foo
-		rm -fr /tmp/foo
+You can synchronize your local workspace with the one you keep on the
+ESC system using [rsync](http://rsync.samba.org/). The synchronization
+can work in both directions, so you can use it for example to save all
+your work on your laptop at the end of the week.
 
-3. Get the school exercises material on your laptop:
+To synchronize the remote workspace on the ESC system with your
+locally-modified one you can do:
+	
+	[me@mylaptop ~]$ mkdir esc_workspace
+	[me@mylaptop ~]$ vi esc_workspace/exercise.cc
+	[me@mylaptop ~]$ rsync -av -e ssh esc_workspace esc-gw:
 
-        cd <My/Dev/Area>
-        git clone https://github.com/infn-esc/esc15.git
+Similarly, if you make modifications to the remote ESC workspace you
+can synchronize your local one:
 
-        # If you get SSL error, 'export GIT_SSL_NO_VERIFY=true' first.
-        # The local firewall prevents use of 'git:' url style on your laptop.
+	[me@mylaptop ~]$ rsync -av -e ssh esc-gw:esc_workspace .
 
-4. Synchronise to your student server:
-
-        rsync -av esc15/ 131.154.193.33:esc15/
-
-   You can download a [zip file](https://github.com/infn-esc/esc15/zipball/master)
-   or [tar ball](https://github.com/infn-esc/esc/tarball/master) from the
-   [github web page](http://github.com/infn-esc/esc15) if you don't have `git`.
-
-   You can now edit sources on your laptop, and run the command above to sync
-   to the server. You can of course also run an editor on the server and sync
-   back to your laptop, which ever you feel more comfortable with. Do be
-   careful with rsync command syntax, however, it's easy to make mistakes.
+Please refer to the rsync manual to fully understand the meaning of
+the different options, so to avoid mistakes that could cause loss of
+data.
