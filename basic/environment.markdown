@@ -38,11 +38,11 @@ From there you can log into esc-XY in a password-less way, thanks to
 an SSH key already generated for you and available in the `.ssh`
 directory (files `id_rsa` and `id_rsa.pub`).
 
-	[studentNM@esc-gw ~]$ ssh -X esc-XY
+	[studentNM@esc-gw ~]$ ssh esc-XY
 
 If you want you can do it in one step.
 
-	[myself@mylaptop ~]$ $ ssh -tX studentNM@esc-gw.pd.infn.it ssh -X esc-XY
+	[myself@mylaptop ~]$ $ ssh -tX studentNM@esc-gw.pd.infn.it ssh esc-XY
 
 Your shell is [`bash`](http://www.gnu.org/s/bash).
 
@@ -124,6 +124,7 @@ when logging into esc-gw.
 	HostName esc-gw.pd.infn.it
 	User studentNM
 	IdentityFile ~/esc_ssh/id_rsa
+	ForwardX11 yes
 	EOF
 	[me@mylaptop ~]$ ssh esc-gw
 	Last login: ...
