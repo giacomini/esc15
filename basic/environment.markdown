@@ -39,7 +39,9 @@ virtual machines. Use the real server (with a name of the form
 To log on esc-XY you have to first log on a gateway server, named
 esc-gw.pd.infn.it, with the username and password of studentNM
 
-	[myself@mylaptop ~]$ ssh studentNM@esc-gw.pd.infn.it
+	[myself@mylaptop ~]$ ssh -X studentNM@esc-gw.pd.infn.it
+
+The -X option forwards the X11 display.
 
 From there you can log onto esc-XY in a password-less way, thanks to an SSH
 key already generated for you and available in the .ssh directory
@@ -52,7 +54,21 @@ You can do it in one step:
 	[myself@mylaptop ~]$ $ ssh -t studentNM@esc-gw ssh esc-XY
 
 If you wish, you can copy the SSH credential files onto your personal
-laptop, so that you can log on esc-gw without password.
+laptop, so that you can log on esc-gw without password. If you run
+Linux on your laptop, a convenient setup may be the following:
+
+	[myself@mylaptop ~]$ mkdir esc_ssh
+	[myself@mylaptop ~]$ scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa esc_ssh
+	[myself@mylaptop ~]$ scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa.pub esc_ssh
+	[myself@mylaptop ~]$ chmod 600 esc_ssh/id_rsa
+	[myself@mylaptop ~]$ cat >> .ssh/config <<EOF
+	Host esc-gw
+	HostName esc-gw.pd.infn.it
+	User studentNM
+	IdentityFile ~/esc_ssh/id_rsa
+	EOF
+	[myself@mylaptop ~]$ mkdir esc_mnt
+	[myself@mylaptop ~]$ sshfs esc-gw: esc_mnt
 
 Your shell is [`bash`](http://www.gnu.org/s/bash)
 
@@ -106,27 +122,26 @@ Testing the environment
    profiles, it should produce some output -- for now it will in fact
    display an error message due to lack of profiles.
 
-Advanced configuration
-----------------------
+Editing source code
+-------------------
 
-The above should be sufficient for more purposes, however we also includes
-notes on an alternate "advanced" configuration.
+On esc-XY you can find several editors available, such as vim, emacs,
+gedit, nano. If your laptop's diplay is available, graphical editors
+will open a window on your laptop; the network latency however may not
+be good enough to give you a fine experience.
 
-The assumption for this more advanced section is that you prefer to work on
-your laptop, editing exercise code there. In parallel you will keep several
-terminal windows open on the student server, where you compile code and run
-other commands. We set up SSH keys so you can login to your server without
-constantly typing your password, plus some convenient name aliases so you do
-need to remember IP addresses.
+Alternatively you could edit the source code for the exercises on your
+laptop, synchronizing the files with esc-XY. In the following some
+options are presented.
 
-1. SSH into your assigned host:
+Using sshfs
+===========
 
-         ssh <student>@esc-<nn>
-         echo $HOME $SHELL
-         mkdir -p .ssh
-         chmod 755 .ssh
-         ls -laF
+You can mount your home directory on the ESC system on your laptop via
+sshfs.
 
+	[myself@mylaptop ~]$ mkdir esc
+	[myself@mylaptop ~]$ sshfs 
 2. If your laptop is Linux, Mac OS X, or if you use Cygwin on Windows, we
    recommend you keep a copy of all your exercise source code, notes etc.
    locally, and `rsync <http://rsync.samba.org/>`_ to/from student servers.
@@ -148,12 +163,12 @@ need to remember IP addresses.
    * Test you can rsync to the student host (change "esc-40" below to your
      assigned node!):
 
-         mkdir /tmp/foo
-         date > /tmp/foo/test.txt
-         rsync -av /tmp/foo/ 131.154.193.33:foo/
-         ssh <student>@131.154.193.33 ls -laFR foo
-         ssh <student>@131.154.193.33 rm -fr foo
-         rm -fr /tmp/foo
+		mkdir /tmp/foo
+		date > /tmp/foo/test.txt
+		rsync -av /tmp/foo/ 131.154.193.33:foo/
+		ssh <student>@131.154.193.33 ls -laFR foo
+		ssh <student>@131.154.193.33 rm -fr foo
+		rm -fr /tmp/foo
 
 3. Get the school exercises material on your laptop:
 
