@@ -7,7 +7,8 @@
 //
 // remove/add radomness in the init
 //
-// change the way the conditional code is expressed 
+// change the way the conditional code is expressed
+//  add -DBRANCH_ALGO=branchless2
 //
 
 
@@ -15,6 +16,7 @@
 
 #ifndef BRANCH_ALGO
 #define BRANCH_ALGO branch
+#warning "using default branch algorithm"
 #endif
 
 inline float branch(float x, float y, float z) {

@@ -4,7 +4,15 @@
 //  change -O2 in -Ofast
 //  add -funroll-loops
 //
+//  change order of loops using -DMMULT_ALGO=mmult2
+//  change N (x2)
 //
+
+#ifndef MMULT_ALGO
+#define MMULT_ALGO mmult
+#warning "using default matmul algorithm"
+#endif
+
 
 
 void mmult(float const * a, float const * b, float * c, int N) {
@@ -84,7 +92,7 @@ int main() {
   init(a,size,1.3458f);
   init(b,size,2.467f);
   
-  mmult(a,b,c,N);
+  MMULT_ALGO(a,b,c,N);
   
   // mdiv2(a,b,c,N);
 

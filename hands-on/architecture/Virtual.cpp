@@ -64,7 +64,7 @@ int main() {
   std::random_shuffle(pa.begin(),pa.end());  
 
   double c=0;
-  for (int i=0; i<10000; ++i) {
+  for (int i=0; i<20000; ++i) {
     for (auto const & p : pa) c += p->comp();
   }
 
