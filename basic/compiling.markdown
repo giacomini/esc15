@@ -5,14 +5,10 @@ layout: main
 ---
 
 The goal of this exercise is to understand how to compile and run test
-programs on the student servers. We have installed 64-bit GCC 5.2.0
-which you can experiment with.
+programs on a student server. The default compiler is 64-bit gcc v. 5.2.0.
 
-Build 64-bit [cputicks.cc]({{exercises_repo}}/exercises/basic/cputicks.cc) with
-GCC 5.2.0:
+Build [cputicks.cc]({{exercises_repo}}/exercises/basic/cputicks.cc):
 
-    type c++
-    cd esc15/exercises/basic
-    c++ -o cputicks cputicks.cc
-    file cputicks
-    ./cputicks 1
+    cd hands-on/basic
+    c++ -o cputicks -std=c++14 -O3 -Wall -Wextra cputicks.cc
+    ./cputicks

@@ -10,20 +10,18 @@ finding threading bugs and analysing cache access patterns. This
 exercise will introduce you to the basic mechanics of using Valgrind;
 later exercises will go into more detail.
 
-1. Set up your environment:
+1. Build [`memerror.cc`]({{site.exercise_repo}}/hands-on/basic/memerror.cc):
 
-        c++ -v 2>&1 | grep version  # should say 'gcc version 4.9.0 (GCC)'
-        valgrind --version          # should say 'valgrind-3.10.0'
+		cd exercises/basic
+		c++ -std=c++14 -g -o memerror memerror.cc
 
-2. Build [`memerror.cc`]({{site.exercise_repo}}/exercises/basic/memerror.cc):
+2. Run the test program under valgrind:
 
-       cd esc15/exercises/basic
-       c++ -g -o memerror memerror.cc
+		valgrind ./memerror
 
-3. Run the test program under valgrind:
+3. Try enabling the optimization (`-O`) and see if there is an effect
+   on the valgrind analysis.
 
-       valgrind ./memerror
+4. The compiler can sometimes warn us about the same thing:
 
-4. Let's ask compiler to tell us the same thing:
-
-       c++ -g -W -Wall -Werror -ansi -pedantic -o memerror memerror.cc
+       c++ -std=c++14 -g -Wall -Wextra -o memerror memerror.cc
