@@ -1,5 +1,5 @@
 ---
-title: Basic profiling using `std::chrono`
+title: Basic profiling using std::chrono
 layout: main
 category: basic
 ---
@@ -8,20 +8,24 @@ The goal of this exercise is to introduce you to the use of
 `std::chrono` to do some basic performance measurements.
 
 The test program includes manually inserted calls to
-`std::chrono::high_resolution_clock` to retrieve the current
-`time_point`, which allows to measure the elapsed time between two
-points.
+`high_resolution_clock` to retrieve the current `time_point`, which
+allows to measure the elapsed time between two points.
 
-Build and run [`cputicks.cc`](https://github.com/infn-esc/esc15/hands-on/basic/cputicks.cc):
+Build and run
+[`cputicks.cc`](https://github.com/infn-esc/esc15/hands-on/basic/cputicks.cc):
 
+	{% highligh bash %}
 	cd hands-on/basic
-	c++ -O -Wall -Wextra -std=c++14 -o cputicks cputicks.cc
+	c++ -std=c++14 -O -o cputicks cputicks.cc
 	./cputicks
+	{% endhighligh %}
 
 Run the program a few times, possibly also with arguments:
 
+	{% highligh bash %}
 	./cputicks 100
 	./cputicks 1000
+	{% endhighligh %}
 
 1. Why does `test1()` report much more time spent than `test2()`?
 
