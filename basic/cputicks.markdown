@@ -14,11 +14,11 @@ allows to measure the elapsed time between two points.
 Build and run
 [`cputicks.cc`](https://github.com/infn-esc/esc15/hands-on/basic/cputicks.cc):
 
-```sh
+{% highlight bash %}
 cd hands-on/basic
 	c++ -std=c++14 -O -o cputicks cputicks.cc
 	./cputicks
-```
+{% endhighlight %}
 
 Run the program a few times, possibly also with arguments:
 
