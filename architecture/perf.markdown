@@ -26,8 +26,11 @@ On can choose a set of events and list them on the command line as in
 For large applications more details can be obtained running ``perf record``  that will produce a file containing all sampled events and their location in the application.
 ``perf report`` can be used to display the detailed profile
 
-a wrapper defining more user-friedly name for INTEL counters can be downloaded as
+a wrapper defining more user-friedly name for INTEL counters can be downloaded
 {% highlight bash %}
 git clone https://github.com/andikleen/pmu-tools.git
-put-tools/ocperf
+{% endhighlight %}
+and executed in place of `perf` as
+ {% highlight bash %}
+pmu-tools/ocperf.py
 {% endhighlight %}
