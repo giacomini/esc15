@@ -14,18 +14,18 @@ allows to measure the elapsed time between two points.
 Build and run
 [`cputicks.cc`](https://github.com/infn-esc/esc15/hands-on/basic/cputicks.cc):
 
-	{% highligh bash %}
+	{% highlight bash %}
 	cd hands-on/basic
 	c++ -std=c++14 -O -o cputicks cputicks.cc
 	./cputicks
-	{% endhighligh %}
+	{% endhighlight %}
 
 Run the program a few times, possibly also with arguments:
 
-	{% highligh bash %}
+	{% highlight bash %}
 	./cputicks 100
 	./cputicks 1000
-	{% endhighligh %}
+	{% endhighlight %}
 
 1. Why does `test1()` report much more time spent than `test2()`?
 
