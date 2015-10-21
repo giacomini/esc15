@@ -92,9 +92,13 @@ Measure in various conditions
 Excercise 4
 -----------
 
+Different form of “Braching” in conditional code
 
 Use [Branch.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/Branch.cpp)
 
 compile, measure performance and eventually change compiler options as in Exercise 1
 
+Measure in various conditions
+   * Remove “random_shuffle”
+   * change the way the conditions are expressed
 
