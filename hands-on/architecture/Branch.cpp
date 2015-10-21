@@ -1,6 +1,6 @@
 //
 // compile with
-// c++-52 -std=c++14 -O2 -Wall Branch.cpp  -fopt-info-vec
+// c++-52 -std=c++14 -O2 -Wall -fopt-info-vec -march=native Branch.cpp
 //
 //  change -O2 in -Ofast
 //  add -funroll-loops  ??
