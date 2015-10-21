@@ -21,13 +21,13 @@ Steps
 3. Examine the little test programs in this directory.  You use them for
    dedicated little studies on container memory allocation behaviour:
 
-   - [uninitialised.cc]({{exercises_repo}}/exercises/memory/uninitialised.cc):
+   - [uninitialised.cc]({{site.exercises_repo}}/hands-on/memory/uninitialised.cc):
      Catch use of uninitialised memory.
 
-   - [array-smash.cc]({{exercises_repo}}/exercises/memory/array-smash.cc):
+   - [array-smash.cc]({{site.exercises_repo}}/hands-on/memory/array-smash.cc):
      Catch writing past the end of an object.
 
-   - [stack-smash.cc]({{exercises_repo}}/exercises/memory/stack-smash.cc):
+   - [stack-smash.cc]({{site.exercises_repo}}/hands-on/memory/stack-smash.cc):
      Catch destruction of stack frame caused by overwriting outside bounds.
 
 4. Build each program.  The command is mentioned in each source file.  To

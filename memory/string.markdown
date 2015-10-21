@@ -17,18 +17,18 @@ Steps
 
 2. Go to the exercise directory:
 
-        cd esc15/exercises/memory
+        cd esc15/hands-on/memory
 
 3. Examine the little test programs in this directory.  You use them for
    dedicated little studies on container memory allocation behaviour:
 
-   - [ls-build.cc]({{exercises_repo}}/exercises/memory/ls-build.cc): Build a
+   - [ls-build.cc]({{site.exercises_repo}}/hands-on/memory/ls-build.cc): Build a
      `std::list<std::string>` one at a time.
 
-   - [vs-build.cc]({{exercises_repo}}/exercises/memory/vs-build.cc): Build a
+   - [vs-build.cc]({{site.exercises_repo}}/hands-on/memory/vs-build.cc): Build a
      `std::vector<std::string>` one at a time.
 
-   - [vvs-build-and-copy.cc]({{exercises_repo}}/exercises/memory/vvs-build-and-copy.cc): Build a
+   - [vvs-build-and-copy.cc]({{site.exercises_repo}}/hands-on/memory/vvs-build-and-copy.cc): Build a
      Same as `vvvi-build-and-copy.cc`, but using doubly nested vector of
      strings.  Behaves differently because strings are copy-on-write -- less
      memory copies but more reference counting.

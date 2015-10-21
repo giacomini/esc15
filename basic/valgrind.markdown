@@ -10,7 +10,7 @@ finding threading bugs and analysing cache access patterns. This
 exercise will introduce you to the basic mechanics of using Valgrind;
 later exercises will go into more detail.
 
-1. Build [`memerror.cc`]({{site.exercise_repo}}/hands-on/basic/memerror.cc):
+1. Build [`memerror.cc`]({{site.exercises_repo}}/hands-on/basic/memerror.cc):
 
         cd esc15/hands-on/basic
         c++ -std=c++14 -g -o memerror memerror.cc
