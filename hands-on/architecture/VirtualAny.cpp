@@ -51,7 +51,7 @@ struct C final : public A {
 };
 
 
-#include "Variant.h"
+#include "AnyOf.h"
 #include<vector>
 #include<memory>
 #include<random>
@@ -77,7 +77,7 @@ int main() {
   for (auto const & p : pa) c += (*p).type==3 ? static_cast<C const*>(p)->comp() : static_cast<B const*>(p)->comp();
   }
 #elif VARIANT
-  using BorC = Variant<B,C>;
+  using BorC = AnyOf<Base,B,C>;
   std::vector<BorC> anys; anys.reserve(2*size);
   for (int i=0;i<size;++i) { anys.emplace_back(C(3.14));anys.emplace_back(B(7.1));}
   std::random_shuffle(anys.begin(),anys.end());  
