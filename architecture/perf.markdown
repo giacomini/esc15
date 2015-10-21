@@ -21,7 +21,7 @@ perf stat ./a.out
 
 One can choose a set of events and list them on the command line as in
 
-[`doPerf`](https://github.com/infn-esc/esc15/hands-on/architecture/doPerf)
+[`doPerf`]({{site.exercises_repo}}/hands-on/architecture/doPerf)
 
 For large applications more details can be obtained running ``perf record``  that will produce a file containing all sampled events and their location in the application.
 ``perf report`` can be used to display the detailed profile
@@ -36,7 +36,7 @@ pmu-tools/ocperf.py
 {% endhighlight %}
 
 for an example see
-[`doOCPerf`](https://github.com/infn-esc/esc15/hands-on/architecture/doOCPerf)
+[`doOCPerf`]({{site.exercises_repo}}/hands-on/architecture/doOCPerf)
 
 
 Excercise 1
@@ -44,7 +44,7 @@ Excercise 1
 
 Exchange the order of the loops in the matrix multiplication
 
-Use [matmul.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/matmul.cpp)
+Use [matmul.cpp]({{site.exercises_repo}}/hands-on/architecture/matmul.cpp)
 
 Compile
 {% highlight bash %}
@@ -68,7 +68,7 @@ Excercise 2
 
 Compare Horner Method with Estrin
 
-Use [PolyTest.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/PolyTest.cpp)
+Use [PolyTest.cpp]({{site.exercises_repo}}/hands-on/architecture/PolyTest.cpp)
 
 compile, measure performance and eventually change compiler options as in Exercise 1
 
@@ -78,7 +78,7 @@ Excercise 3
 
 Branch predictor in OO code
 
-Use [Virtual.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/PolyTest.cpp)
+Use [Virtual.cpp]({{site.exercises_repo}}/hands-on/architecture/PolyTest.cpp)
 
 compile, measure performance and eventually change compiler options as in Exercise 1
 
@@ -95,7 +95,7 @@ Excercise 4
 
 Different form of “Braching” in conditional code
 
-Use [Branch.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/Branch.cpp)
+Use [Branch.cpp]({{site.exercises_repo}}/esc15/hands-on/architecture/Branch.cpp)
 
 compile, measure performance and eventually change compiler options as in Exercise 1
 
