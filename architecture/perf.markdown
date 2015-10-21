@@ -86,6 +86,7 @@ Measure in various conditions
    * Remove “random_shuffle”
    * Increase number of Derived Classes
    * Try to change the order in the vector of pointers
+   * Try to see if using an _ad-hoc_ type identification makes a difference
 
 
 
