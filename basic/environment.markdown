@@ -115,18 +115,18 @@ If you run Linux, you could for example copy the SSH credentials
 available on esc-gw onto your laptop and configure SSH to use them
 when logging into esc-gw.
 
-	[me@mylaptop ~]$ mkdir esc_ssh
-	[me@mylaptop ~]$ scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa esc_ssh
-	[me@mylaptop ~]$ scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa.pub esc_ssh
-	[me@mylaptop ~]$ chmod 600 esc_ssh/id_rsa
-	[me@mylaptop ~]$ cat >> .ssh/config <<EOF
+	mkdir esc_ssh
+	scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa esc_ssh
+	scp studentNM@esc-gw.pd.infn.it:.ssh/id_rsa.pub esc_ssh
+	chmod 600 esc_ssh/id_rsa
+	cat >> .ssh/config <<EOF
 	Host esc-gw
 	HostName esc-gw.pd.infn.it
 	User studentNM
 	IdentityFile ~/esc_ssh/id_rsa
 	ForwardX11 yes
 	EOF
-	[me@mylaptop ~]$ ssh esc-gw
+	ssh esc-gw
 	Last login: ...
 	[studentNM@esc-gw ~]$ 
 
@@ -134,15 +134,15 @@ when logging into esc-gw.
 
 You can copy files remotely using scp, in both directions.
 
-	[me@mylaptop ~]$ scp exercise.cc @esc-gw:
-	[me@mylaptop ~]$ scp @esc-gw:exercise2.cc .
+	scp exercise.cc @esc-gw:
+	scp @esc-gw:exercise2.cc .
 
 ### Using sshfs
 
 You can mount your ESC home directory on your laptop via sshfs.
 
-	[me@mylaptop ~]$ mkdir esc_workspace
-	[me@mylaptop ~]$ sshfs esc-gw: esc_workspace
+	mkdir esc_workspace
+	sshfs esc-gw: esc_workspace
 
 ### Using rsync
 
@@ -154,14 +154,14 @@ your work on your laptop at the end of the week.
 To synchronize the remote workspace on the ESC system with your
 locally-modified one you can do:
 	
-	[me@mylaptop ~]$ mkdir esc_workspace
-	[me@mylaptop ~]$ vi esc_workspace/exercise.cc
-	[me@mylaptop ~]$ rsync -av -e ssh esc_workspace esc-gw:
+	mkdir esc_workspace
+	vi esc_workspace/exercise.cc
+	rsync -av -e ssh esc_workspace esc-gw:
 
 Similarly, if you make modifications to the remote ESC workspace you
 can synchronize your local one:
 
-	[me@mylaptop ~]$ rsync -av -e ssh esc-gw:esc_workspace .
+	rsync -av -e ssh esc-gw:esc_workspace .
 
 Please refer to the rsync manual to fully understand the meaning of
 the different options, so to avoid mistakes that could cause loss of
