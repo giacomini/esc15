@@ -1,68 +1,55 @@
 #include <iostream>
 #include <iomanip>
-#include <cstdlib>
-#include <stdint.h>
+#include <chrono>
 #include <cmath>
 
-#define RDTSC(v)							\
-  do { unsigned lo, hi;							\
-    __asm__ volatile("rdtsc" : "=a" (lo), "=d" (hi));			\
-    (v) = ((uint64_t) lo) | ((uint64_t) hi << 32);			\
-  } while (0)
-
-double test1(int niter)
+double test1(int n_iter)
 {
   double sum = 0.;
-  double step = M_PI / niter;
+  double const step = M_PI / n_iter;
+  auto total_time = std::chrono::high_resolution_clock::duration{};
+
   double val = 0.;
-  uint64_t total_time = 0;
-
-  for (int i = 0; i < niter; ++i, val += step)
-  {
-    uint64_t start, end;
-
-    RDTSC(start);
+  for (int i = 0; i < n_iter; ++i, val += step) {
+    auto start = std::chrono::high_resolution_clock::now();
     sum += sin(val);
-    RDTSC(end);
+    auto end = std::chrono::high_resolution_clock::now();
 
-    uint64_t dtime = end - start;
-    std::cout << "#" << i << " " << dtime << std::endl;
+    auto dtime = end - start;
+    std::cout << '#' << i << ' ' << std::setw(5) << dtime.count() << '\n';
     total_time += dtime;
   }
 
-  std::cout << "TOTAL " << total_time << std::endl;
+  std::cout << "TOTAL " << total_time.count() << '\n';
+
   return sum;
 }
 
-double test2(int niter)
+double test2(int n_iter)
 {
   double sum = 0.;
-  double step = M_PI / niter;
+  double const step = M_PI / n_iter;
+
+  auto start = std::chrono::high_resolution_clock::now();
   double val = 0.;
-  uint64_t total_time = 0;
-  uint64_t start, end;
-
-  RDTSC(start);
-  for (int i = 0; i < niter; ++i, val += step)
+  for (int i = 0; i < n_iter; ++i, val += step) {
     sum += sin(val);
-  RDTSC(end);
+  }
+  auto end = std::chrono::high_resolution_clock::now();
 
-  total_time = end - start;
-  std::cout << "TOTAL " << total_time << std::endl;
+  auto total_time = end - start;
+  std::cout << "TOTAL " << total_time.count() << '\n';
+
   return sum;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
-  int niter = 10;
-  if (argc > 1)
-    niter = atoi(argv[1]);
+  int const n_iter = (argc > 1) ? std::stoi(argv[1]) : 10;
 
-  double t1 = test1(niter);
-  std::cout << "test1(): " << std::setprecision(3) << t1 << std::endl;
+  auto const t1 = test1(n_iter);
+  std::cout << "test1(): " << std::setprecision(3) << t1 << '\n';
 
-  double t2 = test2(niter);
-  std::cout << "test2(): " << std::setprecision(3) << t2 << std::endl;
-
-  return 0;
+  auto const t2 = test2(n_iter);
+  std::cout << "test2(): " << std::setprecision(3) << t2 << '\n';
 }
