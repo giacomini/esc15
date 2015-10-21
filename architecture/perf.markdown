@@ -19,7 +19,7 @@ the easiest way to use perf is to profile the whole application (say ./a.out) us
 perf stat ./a.out
 {% endhighlight %}
 
-On can choose a set of events and list them on the command line as in
+One can choose a set of events and list them on the command line as in
 
 [`doPerf`](https://github.com/infn-esc/esc15/hands-on/architecture/doPerf)
 
@@ -61,3 +61,40 @@ Recompile with<br>
 Add -ffunroll-loops (force loop unrolling)
 
 Change the product in a division
+
+
+Excercise 2
+-----------
+
+Compare Horner Method with Estrin
+
+Use [PolyTest.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/PolyTest.cpp)
+
+compile, measure performance and eventually change compiler options as in Exercise 1
+
+
+Excercise 3
+-----------
+
+Branch predictor in OO code
+
+Use [Virtual.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/PolyTest.cpp)
+
+compile, measure performance and eventually change compiler options as in Exercise 1
+
+Measure in various conditions
+   * Remove “random_shuffle”
+   * Increase number of Derived Classes
+   * Try to change the order in the vector of pointers
+
+
+
+Excercise 4
+-----------
+
+
+Use [Branch.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/Branch.cpp)
+
+compile, measure performance and eventually change compiler options as in Exercise 1
+
+
