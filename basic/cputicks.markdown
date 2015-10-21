@@ -12,7 +12,7 @@ The test program includes manually inserted calls to
 allows to measure the elapsed time between two points.
 
 Build and run
-[`cputicks.cc`](https://github.com/infn-esc/esc15/hands-on/basic/cputicks.cc):
+[`cputicks.cc`]({{site.exercises_repo}}/hands-on/basic/cputicks.cc):
 
     cd esc15/hands-on/basic
     c++ -std=c++14 -O -o cputicks cputicks.cc

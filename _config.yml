@@ -1,7 +1,7 @@
 highlighter: pygments
 baseurl: /esc15
 menu_header: ESC15
-exercise_repo: https://github.com/infn-esc/esc15
+exercises_repo: https://github.com/infn-esc/esc15/blob/gh-pages
 menu:
   -
     name: basic
