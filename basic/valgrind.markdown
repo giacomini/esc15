@@ -12,16 +12,16 @@ later exercises will go into more detail.
 
 1. Build [`memerror.cc`]({{site.exercise_repo}}/hands-on/basic/memerror.cc):
 
-        [studentNM@esc-XY ~]$ cd esc15/hands-on/basic
-        [studentNM@esc-XY basic]$ c++ -std=c++14 -g -o memerror memerror.cc
+        cd esc15/hands-on/basic
+        c++ -std=c++14 -g -o memerror memerror.cc
         
 2. Run the test program under valgrind:
 
-        [studentNM@esc-XY basic]$ valgrind ./memerror
+        valgrind ./memerror
 
 3. Try enabling the optimization (`-O`) and see if there is an effect
    on the valgrind analysis.
 
 4. The compiler can sometimes warn us about the same thing:
 
-        [studentNM@esc-XY basic]$ c++ -std=c++14 -g -Wall -Wextra -o memerror memerror.cc
+        c++ -std=c++14 -g -Wall -Wextra -o memerror memerror.cc
