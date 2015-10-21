@@ -4,7 +4,7 @@ layout: main
 ---
 
 In this exercise you will work on a small test program,
-[word-list.cc](https://github.com/infn-esc/esc15/exercises/memory/word-list.cc),
+[word-list.cc]({{site.exercises_repo}}/hands-on/memory/word-list.cc),
 which sorts a filtered list of unique words, then prints out middle *N* of
 them. The program is inefficient, and even has bugs. You will use basic tools
 such as `top`, `ps`, `pmap` and `pstack`, and profiling and debugging tools
