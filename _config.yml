@@ -44,6 +44,20 @@ menu:
     - name: perf
       label: perf
 
+  - name: cpp
+    label: C++
+    items:
+    - name: algorithms
+      label: Algorithms
+    - name: pointers
+      label: Pointers
+    - name: move
+      label: Move
+    - name: class
+      label: Class HowTo
+    - name: contract
+      label: Contract
+
 defaults: 
   -
     scope:
