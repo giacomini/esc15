@@ -21,7 +21,7 @@ perf stat ./a.out
 
 On can choose a set of events and list them on the command line as in
 
-[`doPerf`](https://github.com/infn-esc/esc15/exercises/architecture/doPerf)
+[`doPerf`](https://github.com/infn-esc/esc15/hands-on/architecture/doPerf)
 
 For large applications more details can be obtained running ``perf record``  that will produce a file containing all sampled events and their location in the application.
 ``perf report`` can be used to display the detailed profile
@@ -34,3 +34,7 @@ and executed in place of `perf` as
  {% highlight bash %}
 pmu-tools/ocperf.py
 {% endhighlight %}
+
+for an example see
+[`doOCPerf`](https://github.com/infn-esc/esc15/hands-on/architecture/doOCPerf)
+
