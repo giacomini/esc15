@@ -48,9 +48,9 @@ Use [matmul.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/matmul.
 
 Compile
 {% highlight bash %}
-c++ -std=c++14 –Wall –O2 -fopt-info-vec
+c++ -std=c++14 -O2 -fopt-info-vec -march=native
 {% endhighlight %}
-Measure. What’s happening
+Measure. What's happening?
 {% highlight bash %}
 source doPerf
 {% endhighlight %}
@@ -58,6 +58,6 @@ source doPerf
 Recompile with<br>
 -O3  (aggressive optimization and vectorization)<br>
 -Ofast (allow reordering of math operation)<br>
-Add –funroll-loops (force loop unrolling)
+Add -ffunroll-loops (force loop unrolling)
 
 Change the product in a division
