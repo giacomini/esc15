@@ -38,3 +38,26 @@ pmu-tools/ocperf.py
 for an example see
 [`doOCPerf`](https://github.com/infn-esc/esc15/hands-on/architecture/doOCPerf)
 
+
+Excercise 1
+-----------
+
+Exchange the order of the loops in the matrix multiplication
+
+Use [matmul.cpp](https://github.com/infn-esc/esc15/hands-on/architecture/matmul.cpp)
+
+Compile
+{% highlight bash %}
+c++ -std=c++14 –Wall –O2 -fopt-info-vec
+{% endhighlight %}
+Measure. What’s happening
+{% highlight bash %}
+source doPerf
+{% endhighlight %}
+
+Recompile with
+-O3  (aggressive optimization and vectorization)
+-Ofast (allow reordering of math operation)
+Add –funroll-loops (force loop unrolling)
+
+Change the product in a division
