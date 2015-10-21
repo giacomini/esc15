@@ -4,6 +4,9 @@
 //
 //  comment out the random_shuffle
 //  try to change the "pattern" in the vector of pointers
+//  use adhoc RTTI with -DADHOC_RTTI
+//   (then remove "final")
+//
 //
 //  change -O2 in -Ofast
 //  add -funroll-loops  ??
@@ -52,6 +55,7 @@ struct C final : public A {
 #include<memory>
 #include<random>
 #include<algorithm>
+#include<iostream>
 
 int main() {
 
@@ -66,13 +70,15 @@ int main() {
 
   float c=0;
 #ifndef ADHOC_RTTI
+  std::cout << "using virtual function" << std::endl;
   for (int i=0; i<20000; ++i) {
     for (auto const & p : pa) c += p->comp();
   }
 #else
-  for (int i=0; i<20000; ++i) {  // here we know can be only either A or B 
-    for (auto const & p : pa) c += (*p).type==3 ? static_cast<C const*>(p)->comp() : static_cast<B const*>(p)->comp();
-  }
+  std::cout << "using ad-hoc RTTI" << std::endl;
+  for (int i=0; i<20000; ++i) {  // here we know that can be only either C or B 
+  for (auto const & p : pa) c += (*p).type==3 ? static_cast<C const*>(p)->comp() : static_cast<B const*>(p)->comp();
+}
 #endif
   
  return int(c);
