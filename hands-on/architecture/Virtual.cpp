@@ -15,34 +15,35 @@
 // base class
 struct Base {
   virtual ~Base(){}
-  virtual double comp() const=0;
+  virtual float comp() const=0;
+  int type; // should be an enum
 };
 
 
 // derived classes
 struct A : public Base {
   A(){}
-  explicit A(double ix) : x(ix){}
+  explicit A(float ix) : x(ix){type=1;}
   ~A(){}
-   double comp() const override { return x;}
+   float comp() const override { return x;}
    
-  double x;
+  float x;
 };
 
 struct B final : public Base {
   B(){}
-  explicit B(double ix) : x(ix){}
+  explicit B(float ix) : x(ix){type=2;}
   ~B(){}
-   double comp() const override { return x;}
+   float comp() const override { return x;}
 
-  double x;
+  float x;
 };
 
 struct C final : public A {
   C (){}
-  explicit C(double ix) : A(ix){}
+  explicit C(float ix) : A(ix){type=3;}
   ~C(){}
-  double comp() const override { return x;}
+  float comp() const override { return x;}
 
 };
 
@@ -57,17 +58,23 @@ int main() {
 
   int size=1000*10;
 
-  std::vector<A> va(size,A(3.14));
+  std::vector<C> va(size,C(3.14));
   std::vector<B> vb(size,B(7.1));
   std::vector<Base const *> pa; pa.reserve(2*size);
   int i=0; for (auto const & a : va) { pa.push_back(&a); pa.push_back(&vb[i++]); }
   std::random_shuffle(pa.begin(),pa.end());  
 
-  double c=0;
+  float c=0;
+#ifndef ADHOC_RTTI
   for (int i=0; i<20000; ++i) {
     for (auto const & p : pa) c += p->comp();
   }
-
+#else
+  for (int i=0; i<20000; ++i) {  // here we know can be only either A or B 
+    for (auto const & p : pa) c += (*p).type==3 ? static_cast<C const*>(p)->comp() : static_cast<B const*>(p)->comp();
+  }
+#endif
+  
  return int(c);
 
 }
