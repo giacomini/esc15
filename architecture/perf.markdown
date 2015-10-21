@@ -78,7 +78,7 @@ Excercise 3
 
 Branch predictor in OO code
 
-Use [Virtual.cpp]({{site.exercises_repo}}/hands-on/architecture/PolyTest.cpp)
+Use [Virtual.cpp]({{site.exercises_repo}}/hands-on/architecture/Virtual.cpp)
 
 compile, measure performance and eventually change compiler options as in Exercise 1
 
@@ -87,6 +87,7 @@ Measure in various conditions
    * Increase number of Derived Classes
    * Try to change the order in the vector of pointers
    * Try to see if using an _ad-hoc_ type identification makes a difference
+   * Try “AnyOf”
 
 
 
