@@ -22,11 +22,11 @@ Steps
 3. Examine the little test programs in this directory.  You use them for
    dedicated little studies on container memory allocation behaviour:
 
-   - [`vvvi-build-and-copy.cc`]({{exercises_repo}}/exercises/memory/vvvi-build-and-copy.cc):
+   - [`vvvi-build-and-copy.cc`]({{site.exercises_repo}}/hands-on/memory/vvvi-build-and-copy.cc):
      Build triply nested vector of `int`s, and make a copy of it; drops profile
      heap snapshots part way.  This example was used in the presentation.
 
-   - [`vvvi-reserve.cc`]({{exercises_repo}}/exercises/memory/vvvi-reserve.cc): Same as
+   - [`vvvi-reserve.cc`]({{site.exercises_repo}}/hands-on/memory/vvvi-reserve.cc): Same as
      `vvvi-build-and-snapshot.cc`, but uses the `reserve()` method
      correctly to avoid vector resizes.  This example was used in the
      presentation.
