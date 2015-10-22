@@ -129,7 +129,7 @@ struct Reader {
   }
 private:
   long long toRead;
-  __gnu_cxx::sfmt19937_64 eng;
+  __gnu_cxx::sfmt19937 eng;
   // std::mt19937 eng;
   std::uniform_real_distribution<float> rgen = std::uniform_real_distribution<float>(0.,1.);
 
@@ -148,7 +148,7 @@ void go() {
   
 
   // std::mt19937 eng;
-  __gnu_cxx::sfmt19937_64 eng;
+  __gnu_cxx::sfmt19937 eng;
 
   std::uniform_real_distribution<float> rgen(0.,1.);
   std::uniform_real_distribution<float> wgen(-1.,1.);
