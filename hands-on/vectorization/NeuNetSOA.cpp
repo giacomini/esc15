@@ -11,7 +11,7 @@
 
 #include "approx_vexp.h"
 
-constexpr nativeVector::FVect vuno = vzero +1.f;
+constexpr nativeVector::FVect vuno = nativeVector::vzero +1.f;
 
 
 template<typename T>
@@ -28,6 +28,7 @@ template<typename T, int N>
 struct Neuron {
   std::array<float,N+1> w; 
   T operator()(std::array<T,N> const & x) const {
+    using namespace nativeVector;
     input = x;
     T res=vzero +w[N];
     for (int i=0; i<N; ++i) res+=w[i]*x[i];
@@ -35,6 +36,7 @@ struct Neuron {
   }
   
   T sum(std::array<T,N> const & x) const {
+    using namespace nativeVector;
     input = x;
     T res=vzero  +w[N];
     for (int i=0; i<N; ++i) res+=w[i]*x[i];
@@ -42,12 +44,13 @@ struct Neuron {
   }
   
   void updateWeight(float learingRate) {
+    using namespace nativeVector;
     T corr = learingRate*result*(1.f-result)*error;
     for (int i=0; i<N; ++i) {
       T tmp = corr*input[i];
-      for (int j=0; j<VSIZE; ++j) w[i] += tmp[j]/float(VSIZE);
+      for (auto j=0U; j<VSIZE; ++j) w[i] += tmp[j]/float(VSIZE);
     }
-    for (int j=0; j<VSIZE; ++j) w[N] += corr[j]/float(VSIZE);
+    for (auto j=0U; j<VSIZE; ++j) w[N] += corr[j]/float(VSIZE);
   }
   mutable std::array<T,N> input;
   mutable T result;
@@ -87,6 +90,7 @@ struct NeuNet {
   }
 
   void train(std::array<T,N> const & x, T const & target, float learingRate) {
+    using namespace nativeVector;
     output.error = target - (*this)(x);
     for (int i=0; i<M; ++i) middle.neurons[i].error =  output.w[i]*output.error;
     for (int i=0; i<M; ++i) input.neurons[i].error = vzero;
