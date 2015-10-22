@@ -39,4 +39,4 @@ Steps
 References
 ----------
 
-* [IgProf](http://igprof.org>)
+* [IgProf](http://igprof.org)
