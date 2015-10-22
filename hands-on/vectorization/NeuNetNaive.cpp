@@ -105,7 +105,7 @@ struct Reader {
     auto bufSize = buffer.size();
     // random instead of reading
     for ( auto & b : buffer) for (auto & e : b) e=rgen(eng);   // background
-    for (int j=0; j<bufSize; j+=4) // one out of 4
+    for (auto j=0U; j<bufSize; j+=4) // one out of 4
       buffer[j][4] = buffer[j][3] = buffer[j][2] = buffer[j][0];  //signal... 
     toRead -= bufSize;
     return toRead;

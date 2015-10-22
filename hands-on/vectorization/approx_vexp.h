@@ -34,163 +34,9 @@ Not sure it makes that much sense in the vector context.
 // see the comments in the code for the accuracy you get from a given degree
 
 
-#include <cstdint>
-#include <cmath>
-#include <limits>
-#include <algorithm>
-#include <type_traits>
-#include <cstring>
-#include <x86intrin.h>
-
-#ifndef APPROX_MATH_N
-#define APPROX_MATH_N
-namespace approx_math {
-
-  typedef float __attribute__( ( vector_size(  4 ) ) ) float32x1_t;
-  typedef float __attribute__( ( vector_size( 16 ) ) ) float32x4_t;
-  typedef float __attribute__( ( vector_size( 32 ) ) ) float32x8_t;
-  typedef float __attribute__( ( vector_size( 64 ) ) ) float32x16_t;
 
 
-  template<typename T>
-  struct IntType { using type = T; };
-  template<>
-  struct IntType<float> { using type = int; };
-  template<>
-  struct IntType<double> {  using type = long long;};
-  template<typename T>
-  struct UIntType { using type = T; };
-  template<>
-  struct UIntType<float> { using type = unsigned int; };
-  template<>
-  struct UIntType<double> {  using type = unsigned long long;};
-
-  template<typename V>
-  struct VType {
-    static constexpr auto elem(V x) -> typename std::remove_reference<decltype(x[0])>::type { return x[0];}	      
-  };
-  template<>
-  struct VType<float> {
-    static constexpr auto elem(float x) -> float { return x;}	      
-  };
-  template<>
-  struct VType<double> {
-    static constexpr auto elem(double x) -> double { return x;}	      
-  };
-
-  
-  template<typename VF>
-  struct ConvertVector {
-    static constexpr int NV = sizeof(VF);
-    using F =  decltype(VType<VF>::elem(VF()));
-    static constexpr int N = NV/sizeof(F);
-    typedef typename IntType<F>::type __attribute__( ( vector_size(NV) ) ) itype;
-    static VF impl(itype i) { VF f; for (int j=0;j<N;++j) f[j]=i[j]; return f;}
-    static itype impl(VF f) { itype i; for (int j=0;j<N;++j) i[j]=f[j]; return i;}
-  };
-
-  // to be specialized for 2,4,8,16 float and double
-  template<>
-  struct ConvertVector<float32x4_t> {
-    using VF = float32x4_t;
-    static constexpr int NV = sizeof(VF);
-    using F =  decltype(VType<VF>::elem(VF()));
-    static constexpr int N = NV/sizeof(F);
-    typedef typename IntType<F>::type __attribute__( ( vector_size(NV) ) ) itype;
-    static VF impl(itype i) { return VF(_mm_cvtepi32_ps(__m128i(i)));}
-    static itype impl(VF f) { return itype(_mm_cvttps_epi32(__m128(f)));}
-  };
-
-  
-#ifdef __AVX__
-  template<>
-  struct ConvertVector<float32x8_t> {
-    using VF = float32x8_t;
-    static constexpr int NV = sizeof(VF);
-    using F =  decltype(VType<VF>::elem(VF()));
-    static constexpr int N = NV/sizeof(F);
-    typedef typename IntType<F>::type __attribute__( ( vector_size(NV) ) ) itype;
-    static VF impl(itype i) { return VF(_mm256_cvtepi32_ps(__m256i(i)));}
-    static itype impl(VF f) { return itype(_mm256_cvtps_epi32(__m256(f)));}
-  };
-#endif
-  
-
-
-  
-  template<typename VF>
-  struct toIF {
-    // VF is a float type vect
-    // F is the float type
-    static constexpr int NV = sizeof(VF);
-    using F =  decltype(VType<VF>::elem(VF()));
-    static constexpr int N = NV/sizeof(F);
-    typedef typename IntType<F>::type __attribute__( ( vector_size(NV) ) ) itype;
-    typedef typename UIntType<F>::type __attribute__( ( vector_size(NV) ) ) uitype;
-    static itype ftoi(VF f) { itype i; memcpy(&i,&f,NV); return i;}
-    static VF itof(itype i) { VF f; memcpy(&f,&i,NV); return f;}
-    static uitype ftoui(VF f) { uitype i; memcpy(&i,&f,NV); return i;}
-    static VF uitof(uitype i) { VF f; memcpy(&f,&i,NV); return f;}
-
-    static VF convert(itype i) { return ConvertVector<VF>::impl(i);}
-    static itype convert(VF f) { return ConvertVector<VF>::impl(f);}
-
-
-
-  };
-
-  template<>
-  struct toIF<float> {
-    using VF = float;
-    static constexpr int NV = sizeof(VF);
-    using itype = int;
-    using uitype = unsigned int;
-    static itype ftoi(VF f) { itype i; memcpy(&i,&f,NV); return i;}
-    static VF itof(itype i) { VF f; memcpy(&f,&i,NV); return f;}
-    static uitype ftoui(VF f) { uitype i; memcpy(&i,&f,NV); return i;}
-    static VF uitof(uitype i) { VF f; memcpy(&f,&i,NV); return f;}
-
-    static VF convert(itype i) { return i;}
-    static itype convert(VF f) { return f;}
-  };
-
-
-  template<typename V1>
-  V1 max(V1 a, V1 b) {
-    return (a>b) ? a : b;
-  }
-  template<typename V1>
-  V1 min(V1 a, V1 b) {
-    return (a<b) ? a : b;
-  }
-  
-  template<typename V1>
-  V1 abs(V1 a) {
-    return (a>0) ? a : -a;
-  }
-}
-
-
-#ifdef SCALAR
-constexpr int VSIZE = 1;
-// using FVect = approx_math::float32x1_t;
-using FVect = float;
-constexpr FVect vzero={0};
-#else
-#ifdef __AVX__
-constexpr int VSIZE = 8;
-using FVect = approx_math::float32x8_t;
-constexpr approx_math::float32x8_t vzero{0,0,0,0,0,0,0,0};
-#else
-constexpr int VSIZE = 4;
-using FVect = approx_math::float32x4_t;
-constexpr approx_math::float32x4_t vzero{0,0,0,0};
-#endif
-
-#endif  // scalar
-
-
-#endif  // approx math
+#include "nativeVector.h"
 
 
 template<typename Float, int DEGREE>
@@ -303,7 +149,7 @@ struct RangeRedution<Float,false> {
 // valid for -87.3365 < x < 88.7228
 template<typename Float, int DEGREE, bool FMA>
 inline Float __attribute__((always_inline)) unsafe_expf_impl(Float x) {
-  using namespace approx_math;
+  using namespace nativeVector;
   using Int = typename toIF<Float>::itype;
   using UInt = typename toIF<Float>::uitype;
   /* Sollya for the following constants:
@@ -321,7 +167,7 @@ inline Float __attribute__((always_inline)) unsafe_expf_impl(Float x) {
    
   // This is doing round(x*inv_log2f) to the nearest integer
   // Float z = std::floor((x*inv_log2f) +0.5f); Int e = z;
-  using std::abs; using approx_math::abs;
+  using std::abs; using nativeVector::abs;
   // exponent 
   Int e = toIF<Float>::convert(abs(x*inv_log2f)-0.5f);
   e = (x>0) ? e : -e;
@@ -348,7 +194,7 @@ inline Float __attribute__((always_inline)) unsafe_expf_impl(Float x) {
 }
 
 
-#ifndef NO_APPROX_MATH
+#ifndef NO_NATIVEVECTOR
 
 template<typename Float, int DEGREE, bool FMA>
 inline Float  __attribute__((always_inline)) unsafe_expf(Float x) {
@@ -357,7 +203,7 @@ inline Float  __attribute__((always_inline)) unsafe_expf(Float x) {
 
 template<typename Float, int DEGREE, bool FMA>
 inline Float  __attribute__((always_inline)) approx_expf(Float x) {
-  using namespace approx_math;
+  using namespace nativeVector;
   constexpr Float zero{0.f};
   constexpr Float inf_threshold = zero+float(0x5.8b90cp4);
   // log of the smallest normal
@@ -366,7 +212,7 @@ inline Float  __attribute__((always_inline)) approx_expf(Float x) {
   // manage infty output:
   // faster than directly on output!
   // using std::min; using std::max;
-  using approx_math::min; using approx_math::max;
+  using nativeVector::min; using nativeVector::max;
   x = min(max(x,zero_threshold_ftz),inf_threshold);
   Float r = unsafe_expf<Float,DEGREE,FMA>(x); 
 
@@ -383,7 +229,8 @@ template<typename Float, int DEGREE, bool FMA>
 inline Float approx_expf(Float x) {
   return std::exp(x);
 }
-#endif  // NO_APPROX_MATH
+#endif  // NO_NATIVEVECTOR
+
 
 
 

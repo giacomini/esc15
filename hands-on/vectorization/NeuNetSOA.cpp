@@ -11,7 +11,7 @@
 
 #include "approx_vexp.h"
 
-constexpr FVect vuno = vzero +1.f;
+constexpr nativeVector::FVect vuno = vzero +1.f;
 
 
 template<typename T>
@@ -116,7 +116,7 @@ struct Reader {
   
   long long operator()(Buffer & buffer, int bufSize) {
     for ( auto & b : buffer) for (int j=0; j<bufSize; j++) b[j]=rgen(eng); // background
-    for (int j=0; j<bufSize; j+=4)
+    for (auto j=0; j<bufSize; j+=4)
       buffer[4][j] = buffer[3][j] = buffer[2][j] = buffer[0][j];  //signal...
 
     toRead -= bufSize;
@@ -134,7 +134,9 @@ private:
 template<int NX, int MNodes>
 void go() {
 
-  using namespace approx_math;
+
+  using namespace nativeVector;
+
 
   long long Nentries = 1024*10000;
   
@@ -167,7 +169,7 @@ void go() {
   Reader<Data> reader1(Nentries/4);
   while(reader1(buffer,bufSize)>=0) {
     tt -= rdtscp();
-    for (int j=0; j<bufSize; j+=vsize) {
+    for (auto j=0U; j<bufSize; j+=vsize) {
       std::array<FVect, NX> b; FVect t=vzero; t[0]=1.f; if (vsize>4) t[4]=1.f;
       for(int k=0;k<NX;++k)  b[k] = ((FVect const&)(buffer[k][j]));      
       net.train(b,t,0.02f);
@@ -180,7 +182,7 @@ void go() {
   Reader<Data> reader2(Nentries);
   while(reader2(buffer,bufSize)>=0) {
     tc -= rdtscp();
-    for (int j=0; j<bufSize; j+=vsize) {
+    for (auto j=0U; j<bufSize; j+=vsize) {
       std::array<FVect, NX> b;  
       for(int k=0;k<NX;++k)  b[k] = ((FVect const&)(buffer[k][j]));
       res += (net(b)>0.5f) ? vuno : vzero;

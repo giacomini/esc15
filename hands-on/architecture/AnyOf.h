@@ -1,6 +1,13 @@
 #ifndef ANYOF_H
 #define ANYOF_H
-
+//
+//  a simple class to store in place Objects from types derived from a common base type
+//  multiple inheritance is not supported
+//  relies on the base type to have a virtual destructor
+//  It does not have any additional memory or time overhead w/r/t in place new and static_cast
+//
+//
+//
 
 #include<cmath>
 #include<tuple>
@@ -47,12 +54,12 @@ namespace any_details {
   };
   
   template<class Head, typename ... Tail>
-struct maxSize {
+  struct maxSize {
     enum { valueSize = vmax(sizeof(Head), (long unsigned int)(maxSize<Tail...>::valueSize)),
 	   valueAlign = vmax(alignof(Head), (long unsigned int)(maxSize<Tail...>::valueAlign)),
     };
   };
-
+  
   template<class T>
   struct maxSize<T>  {
     enum  { valueSize = sizeof(T),valueAlign = alignof(T) };
