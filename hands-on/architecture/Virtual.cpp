@@ -37,7 +37,7 @@ struct B final : public Base {
   B(){}
   explicit B(float ix) : x(ix){type=2;}
   ~B(){}
-   float comp() const override { return x;}
+   float comp() const override { return -x;}
 
   float x;
 };
