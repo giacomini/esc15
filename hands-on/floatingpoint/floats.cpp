@@ -1,3 +1,7 @@
+//
+//  c++ -std=c++14 -Wall -march=native floats.cpp 
+//
+
 #include<iostream>
 #include<iomanip>
 #include<cmath>
