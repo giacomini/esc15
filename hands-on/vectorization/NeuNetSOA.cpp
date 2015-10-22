@@ -113,6 +113,7 @@ inline unsigned long long rdtscp() {
  return __rdtscp(&taux);
 }
 
+#include<ext/random>
 
 template<typename Buffer>
 struct Reader {
@@ -128,7 +129,8 @@ struct Reader {
   }
 private:
   long long toRead;
-  std::mt19937 eng;
+  __gnu_cxx::sfmt19937_64 eng;
+  // std::mt19937 eng;
   std::uniform_real_distribution<float> rgen = std::uniform_real_distribution<float>(0.,1.);
 
 };
@@ -145,7 +147,9 @@ void go() {
   long long Nentries = 1024*10000;
   
 
-  std::mt19937 eng;
+  // std::mt19937 eng;
+  __gnu_cxx::sfmt19937_64 eng;
+
   std::uniform_real_distribution<float> rgen(0.,1.);
   std::uniform_real_distribution<float> wgen(-1.,1.);
 
