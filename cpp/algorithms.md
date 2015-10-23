@@ -28,7 +28,8 @@ Then extend the program in order to:
 * sort the vector in ascending and descending order
 * move the even numbers at the beginning
 * move the three central numbers at the beginning
-* erase from the vector the elements that satisfy a predicate
+* find the first element that satisfies a certain predicate
+* erase from the vector the elements that satisfy that predicate
 
 The source code contains some hints about what algorithms can be used
 to implement the requested functionality. 

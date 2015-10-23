@@ -59,6 +59,9 @@ int main()
   // move the three central elements to the beginning of the vector
   // use std::rotate
 
+  // find the first element that is multiple of 3 or 7
+  // use std::find_if
+
   // erase from the vector the multiples of 3 or 7
   // use std::remove_if followed by vector::erase
 
