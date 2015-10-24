@@ -22,7 +22,7 @@ int main () {
   std::cout << "significant bits: " << std::numeric_limits<float>::digits << '\n';
   std::cout << "has infinity: " << std::numeric_limits<float>::has_infinity << '\n';
   std::cout << "base 10 digits: " << std::numeric_limits<float>::digits10 << '\n';
-  std::cout << "epsilon: " << std::numeric_limits<float>::epsilon() << '\n';
+  std::cout << "precision: " << std::numeric_limits<float>::epsilon() << '\n';
   print(std::numeric_limits<float>::epsilon());
   print(0.1f);
   return 0;
