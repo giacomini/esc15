@@ -37,6 +37,8 @@ menu:
       label: Large Application
     - name: word-list
       label: Word List
+    - name: zero-pages
+      label: Zero Pages
 
   - name: architecture
     label: ARCHITECTURE
