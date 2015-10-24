@@ -21,6 +21,7 @@ Copy and paste to a file and compile the following two programs:
       void *ptr = malloc(NUM_ITEMS * SIZE_ITEM);
       memset(ptr, 0, NUM_ITEMS * SIZE_ITEM);
       while(true) sleep(1);
+      return 0;
     }
 
 and:
@@ -36,6 +37,7 @@ and:
     {
       calloc(NUM_ITEMS, SIZE_ITEM);
       while(true) sleep(1);
+      return 0;
     }
 
 we will call them `mallocTest.cc` and `callocTest.cc`.
