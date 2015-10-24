@@ -61,3 +61,6 @@ we will call them `aos.cc` and `soa.cc`.
    SoA case?
 
 4. How many memory pages?
+
+5. What happens to the performance of the two examples if you add a virtual
+   destructor to A? Why?
