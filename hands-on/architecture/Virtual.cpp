@@ -89,7 +89,7 @@ int main() {
   for (auto i=0U; i<pa.size(); ++i) { types[i]=pa[i]->type; data[i]=pa[i]->data();}
   std::cout << "using SOA" << std::endl;
   for (int i=0; i<20000; ++i) {  // here we know that can be only either C or B 
-    for (auto i=0U; i<data.size(); ++i) c += types[i]==3 ? C::doComp(data[i]) : B::doComp(data[i]);
+    for (auto j=0U; j<data.size(); ++j) c += types[j]==3 ? C::doComp(data[j]) : B::doComp(data[j]);
   }
 #else
   std::cout << "using virtual function" << std::endl;
