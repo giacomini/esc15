@@ -39,6 +39,8 @@ menu:
       label: Word List
     - name: zero-pages
       label: Zero Pages
+    - name: aos-vs-soa
+      label: AoS vs SoA
 
   - name: architecture
     label: ARCHITECTURE
