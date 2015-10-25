@@ -87,6 +87,7 @@ Measure in various conditions
    * Increase number of Derived Classes
    * Try to change the order in the vector of pointers
    * Try to see if using an _ad-hoc_ type identification makes a difference
+   * Compare with a SOA
    * Try “AnyOf”
 
 

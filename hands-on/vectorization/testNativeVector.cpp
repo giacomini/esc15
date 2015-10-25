@@ -1,4 +1,6 @@
 #include "nativeVector.h"
+#include "approx_vexp.h"
+#include "approx_vlog.h"
 
 
 int main() {
@@ -24,6 +26,15 @@ int main() {
   std::cout << io <<  ' ' << iz << std::endl;
 
   std::cout << convert(io) << ' ' << convert(one) << std::endl;
+
+  FVect x{-1.f,0.f,.34f,2.3};
+  FVect a{1.f,123.f,32.f,1000.f};
+
+  std::cout << approx_expf<FVect,4,false>(x) << std::endl;
+  std::cout << approx_logf<FVect,6>(a) << std::endl;
+  std::cout << approx_logf<FVect,6>(approx_expf<FVect,4,false>(x)) << std::endl;
+  std::cout << approx_expf<FVect,4,false>(approx_logf<FVect,6>(a)) << std::endl;
+  
   
   return 0;
 };

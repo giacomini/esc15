@@ -37,6 +37,10 @@ menu:
       label: Large Application
     - name: word-list
       label: Word List
+    - name: zero-pages
+      label: Zero Pages
+    - name: aos-vs-soa
+      label: AoS vs SoA
 
   - name: architecture
     label: ARCHITECTURE
