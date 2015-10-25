@@ -53,8 +53,6 @@ menu:
       label: Pointers
     - name: move
       label: Move
-    - name: class
-      label: Class HowTo
     - name: contract
       label: Contract
 
